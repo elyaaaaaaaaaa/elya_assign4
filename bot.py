@@ -8,6 +8,10 @@ TOKEN = "8740908913:AAEZkbe7NNLdSz-6QZqp9TMEE0UhW0f3cD4"
 
 logging.basicConfig(level=logging.INFO)
 
+<<<<<<< HEAD
+=======
+# ── БД ──
+>>>>>>> b87a5329a0939de3ee3b84906ae00e57116e0d72
 conn = sqlite3.connect("dict.db", check_same_thread=False)
 conn.executescript("""
     CREATE TABLE IF NOT EXISTS words (
@@ -20,6 +24,10 @@ conn.commit()
 
 ADDING = 1
 
+<<<<<<< HEAD
+=======
+# ── Хендлеры ──
+>>>>>>> b87a5329a0939de3ee3b84906ae00e57116e0d72
 
 async def start(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
@@ -31,6 +39,7 @@ async def start(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     )
 
 async def add(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+<<<<<<< HEAD
     await update.message.reply_text("Введи: слово перевод\nНапример: cat кот\n/cancel — отмена")
     return ADDING
 
@@ -38,6 +47,15 @@ async def add_input(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
     parts = update.message.text.split(" ", 1)
     if len(parts) < 2:
         await update.message.reply_text("Введи слово и перевод через пробел, например: cat кот")
+=======
+    await update.message.reply_text("Введи: слово | перевод\n/cancel — отмена")
+    return ADDING
+
+async def add_input(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+    parts = update.message.text.split("|")
+    if len(parts) < 2:
+        await update.message.reply_text("Нужно через | , например: cat | кот")
+>>>>>>> b87a5329a0939de3ee3b84906ae00e57116e0d72
         return ADDING
     word, translation = parts[0].strip(), parts[1].strip()
     try:
